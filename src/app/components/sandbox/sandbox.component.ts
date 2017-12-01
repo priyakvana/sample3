@@ -12,6 +12,7 @@ import { Component }from'@angular/core';
    <h2>create post</h2>
    <p [hidden]="isUnchanged">post has been changed,please save</p>
    <button [disabled]="isUnchanged">save</button>
+   
    `
 })
 export class SandboxComponent{
