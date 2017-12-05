@@ -1,20 +1,20 @@
 import { Component }from'@angular/core';
-
+import { DataServices } from '../../services/data.services';
 @Component({
     selector:'sandbox',
     template:`
     <h1>Hello world</h1>
-   <input type="text"(click)="fireEvent($event)" placeholder="click" value={{text}} (keypress)="changeEvent($event)">
-   <h2>{{text}}</h2>
-   ` 
+    <ul class ="list-group">
+    <li class="list-group-item" *ngFor="let user of users">{{user}}</li>
+    </ul>
+   `  
 })
 export class SandboxComponent{
-  text:string='hello';
-fireEvent(e){
-  console.log(e.type);
-  }
-  changeEvent(e){
-    this.text= e.target.value;
-  }
+  users:string[];
+constructor(public dataService:DataServices)
 
+{
+this.users=this.dataService.getUsers();
+}
+  
 }
