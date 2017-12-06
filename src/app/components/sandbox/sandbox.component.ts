@@ -21,6 +21,9 @@ import { DataServices } from '../../services/data.services';
               <li >Phone No:{{user.phone}}</li>
             </ul>
     <br>
+    <button class="btn btn-danger btm-sm"(click)=
+    "onDeleteClick(user.id)">delete</button>
+    <br>
     </div>
     </div>
    `  
@@ -44,5 +47,16 @@ constructor(public dataService:DataServices)
        console.log(user);
        this.users.unshift(user);
      });
- }  
+ }
+ onDeleteClick(id){
+this.dataService.deleteUser(id).subscribe(res=>{
+
+  for(let i=0;i<this.users.length;i++){
+    if(this.users[i].id==id){
+      this.users.splice(i,1);
+  }
+}
+})
+ 
+}
 }
