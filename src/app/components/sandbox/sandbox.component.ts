@@ -3,18 +3,25 @@ import { DataServices } from '../../services/data.services';
 @Component({
     selector:'sandbox',
     template:`
-    <h1>Hello world</h1>
-    <ul class ="list-group">
-    <li class="list-group-item" *ngFor="let user of users">{{user}}</li>
+
+    <ul class="list-group">
+    <li class ="list-group-item" *ngFor="let d of data">{{d}}
+    </li>
     </ul>
+ 
    `  
 })
 export class SandboxComponent{
-  users:string[];
+data:any[]= [];
 constructor(public dataService:DataServices)
-
 {
-this.users=this.dataService.getUsers();
+  console.log(this.dataService.getData());
+  this.dataService.getData().subscribe(data=>
+  {
+   // console.log(data);
+   this.data.push(data);
+   ;
+  })
 }
   
 }
